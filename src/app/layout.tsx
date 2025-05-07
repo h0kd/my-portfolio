@@ -2,6 +2,7 @@ import "./globals.css";
 import { ReactNode } from "react";
 import Navbar from "./components/Navbar";
 import { ThemeProvider } from "./components/theme-provider";
+import PageTransition from "./components/PageTransition";
 
 interface RootLayoutProps {
   children: ReactNode;
@@ -25,7 +26,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
           disableTransitionOnChange
         >
           <Navbar />
-          <main className="container mx-auto px-4 py-8">{children}</main>
+          <main className="container mx-auto px-4 py-8">
+            <PageTransition>{children}</PageTransition>
+          </main>
         </ThemeProvider>
       </body>
     </html>
