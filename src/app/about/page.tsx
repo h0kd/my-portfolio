@@ -100,7 +100,7 @@ export default function AboutPage() {
           <Mail className="w-5 h-5" /> leonardodelpino11@gmail.com
         </a>
         <a
-          href="https://www.linkedin.com/in/.../"
+          href="https://www.linkedin.com/in/leonardo-vicente-del-pino-sanhueza-67b1012a2/"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"

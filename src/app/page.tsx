@@ -25,7 +25,10 @@ export default function Home() {
       <div className="flex justify-center gap-6">
         {[
           { Icon: Github, url: "https://github.com/h0kd" },
-          { Icon: Linkedin, url: "https://www.linkedin.com/in/..." },
+          {
+            Icon: Linkedin,
+            url: "https://www.linkedin.com/in/leonardo-vicente-del-pino-sanhueza-67b1012a2/",
+          },
           { Icon: Mail, url: "mailto:leonardodelpino11@gmail.com" },
         ].map(({ Icon, url }, i) => (
           <a

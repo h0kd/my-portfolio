@@ -54,6 +54,15 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
         {/* Botones con shadcn/ui */}
         <div className="mt-6 flex gap-3">
+          <Button asChild>
+            <Link
+              href={`/projects/${project.slug}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Details
+            </Link>
+          </Button>
           <Button variant="outline" asChild>
             <Link
               href={project.demoUrl}
