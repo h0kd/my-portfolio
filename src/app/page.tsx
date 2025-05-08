@@ -1,8 +1,10 @@
+// src/app/page.tsx
 "use client";
 
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail } from "lucide-react";
+import { Button } from "@/components/ui/button"; // importa tu Button
 
 export default function Home() {
   const links = [
@@ -29,6 +31,17 @@ export default function Home() {
         Passionate Full Stack Developer building modern, scalable web
         applications.
       </p>
+
+      {/* Botón de descarga de CV */}
+      <div className="flex justify-center space-x-4">
+        <Button variant="outline" asChild>
+          <a href="/files/Leonardo_DelPino_CV.pdf" download>
+            Download CV
+          </a>
+        </Button>
+      </div>
+
+      {/* Iconos sociales / contacto */}
       <div className="flex justify-center gap-6">
         {links.map(({ Icon, url, external }, i) =>
           external ? (
