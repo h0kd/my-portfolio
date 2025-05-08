@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 import Navbar from "./components/Navbar";
 import { ThemeProvider } from "./components/theme-provider";
 import PageTransition from "./components/PageTransition";
+import { Toaster } from "sonner";
 
 interface RootLayoutProps {
   children: ReactNode;
@@ -29,6 +30,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <main className="container mx-auto px-4 py-8">
             <PageTransition>{children}</PageTransition>
           </main>
+          {/* Sonner Toaster for toast notifications */}
+          <Toaster position="top-center" richColors />
         </ThemeProvider>
       </body>
     </html>
