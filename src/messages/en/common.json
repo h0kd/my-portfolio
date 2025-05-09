@@ -1,0 +1,10 @@
+{
+  "projects": {
+    "heading": "Projects",
+    "demo": "Demo",
+    "code": "Code",
+    "details": "Details",
+    "featuresHeading": "Key Features",
+    "techStackHeading": "Tech Stack"
+  }
+}

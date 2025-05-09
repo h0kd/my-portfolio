@@ -3,25 +3,37 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
-import { ProjectData } from "@/utils/projects";
+import { Button } from "@/components/ui/button";
+
+// Import estático de ambos archivos de proyectos
 import projectsEn from "@/utils/projects";
 import { projectsEs } from "@/utils/project.es";
-import { Button } from "@/components/ui/button";
 
 interface Params {
   locale: string;
   slug: string;
 }
 
+type ProjectData = {
+  slug: string;
+  title: string;
+  description: string;
+  image: string;
+  demoUrl: string;
+  repoUrl: string;
+  techStack: string[];
+  features?: string[];
+};
+
 export function generateStaticParams() {
-  const locales = ["en", "es"];
-  return locales.flatMap((locale) =>
-    // prerender each project under each locale
-    (projectsEn as ProjectData[]).map((project) => ({
+  const locales: Params["locale"][] = ["en", "es"];
+  return locales.flatMap((locale) => {
+    const list = locale === "es" ? projectsEs : projectsEn;
+    return list.map((project) => ({
       locale,
       slug: project.slug,
-    }))
-  );
+    }));
+  });
 }
 
 export default async function ProjectDetailPage({
@@ -29,26 +41,23 @@ export default async function ProjectDetailPage({
 }: {
   params: Params | Promise<Params>;
 }) {
-  // 1. Await params
   const { locale, slug } = await params;
 
-  // 2. Load translations for this page
+  // Textos de UI
   const t = await getTranslations("projects");
 
-  // 3. Choose the right projects array by locale
-  const allProjects: ProjectData[] =
-    locale === "es" ? projectsEs : (projectsEn as ProjectData[]);
-  const project = allProjects.find((p) => p.slug === slug);
+  // Selecciona la lista según el locale
+  const list: ProjectData[] = locale === "es" ? projectsEs : projectsEn;
+
+  const project = list.find((p) => p.slug === slug);
   if (!project) return notFound();
 
   return (
     <article className="container mx-auto px-4 py-12 space-y-6">
-      {/* Title */}
       <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
         {project.title}
       </h1>
 
-      {/* Header Image */}
       <div className="relative w-full h-64 rounded-lg overflow-hidden">
         <Image
           src={project.image}
@@ -58,13 +67,11 @@ export default async function ProjectDetailPage({
         />
       </div>
 
-      {/* Description */}
       <p className="text-lg text-gray-700 dark:text-gray-300">
         {project.description}
       </p>
 
-      {/* Features */}
-      {project.features?.length ? (
+      {project.features?.length && (
         <section>
           <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
             {t("featuresHeading")}
@@ -75,9 +82,8 @@ export default async function ProjectDetailPage({
             ))}
           </ul>
         </section>
-      ) : null}
+      )}
 
-      {/* Tech Stack */}
       <section>
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
           {t("techStackHeading")}
@@ -94,23 +100,14 @@ export default async function ProjectDetailPage({
         </div>
       </section>
 
-      {/* Buttons */}
       <div className="flex gap-4 pt-6">
         <Button variant="outline" asChild>
-          <Link
-            href={project.demoUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <Link href={project.demoUrl} target="_blank" rel="noopener">
             {t("demo")}
           </Link>
         </Button>
         <Button variant="outline" asChild>
-          <Link
-            href={project.repoUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <Link href={project.repoUrl} target="_blank" rel="noopener">
             {t("code")}
           </Link>
         </Button>

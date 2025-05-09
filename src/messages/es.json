@@ -1,0 +1,115 @@
+{
+  "hero": {
+    "title": "Leonardo Del Pino",
+    "subtitle": "Apasionado Full Stack Developer creando aplicaciones web modernas y escalables.",
+    "downloadCV": "Descargar CV"
+  },
+  "nav": {
+    "home": "Inicio",
+    "projects": "Proyectos",
+    "about": "Acerca",
+    "contact": "Contacto"
+  },
+  "contact": {
+    "title": "Contáctame",
+    "labelName": "Nombre",
+    "labelEmail": "Correo",
+    "labelMessage": "Mensaje",
+    "sendButton": "Enviar",
+    "sending": "Enviando...",
+    "successTitle": "🎉 ¡Enviado con éxito!",
+    "successMessage": "Gracias, {name}. Me pondré en contacto pronto.",
+    "errorMessage": "¡Ups! No se pudo enviar.",
+    "successToast": "¡Mensaje enviado! Gracias por escribir.",
+    "errorToast": "¡Ups! Algo salió mal. Intenta de nuevo.",
+    "guest": "Invitado"
+  },
+  "about": {
+    "title": "Acerca de mí",
+    "introPrefix": "¡Hola! Soy",
+    "introSuffix": "Full Stack Developer en Concepción, Chile. Me apasiona crear aplicaciones web modernas y escalables, y cuento con experiencia tanto en frontend como en backend.",
+    "education": {
+      "heading": "Educación",
+      "institution": "Universidad Técnica Federico Santa María",
+      "degree": "Técnico de Nivel Superior en Ciencias de la Computación",
+      "years": "2022 – 2024",
+      "description": "Sólida base en desarrollo de software, bases de datos, análisis de sistemas y tecnologías web full stack."
+    },
+    "work": {
+      "heading": "Experiencia Laboral",
+      "jobs": [
+        {
+          "company": "INSPECCIÓN Y CERTIFICACIÓN BBF LTDA.",
+          "role": "Full Stack Developer",
+          "period": "Nov 2024 – Presente",
+          "location": "Concepción, Chile",
+          "responsibilities": [
+            "Desarrollé herramientas internas para el seguimiento de inversiones y gestión de gastos.",
+            "Construí aplicaciones web con Next.js, Prisma, PostgreSQL y TailwindCSS.",
+            "Integré Trello para la gestión de tareas del equipo e implementé paneles personalizados.",
+            "Actualmente migrando sistemas legacy a plataformas web modernas."
+          ]
+        },
+        {
+          "company": "Ecometric S.A.",
+          "role": "Pasante de TI – Sistema de Gestión de Activos",
+          "period": "Feb 2024 (1 mes)",
+          "location": "",
+          "responsibilities": [
+            "Instalé y configuré Snipe-IT en un servidor Linux.",
+            "Adapté la herramienta a los flujos y estándares de seguridad internos.",
+            "Realicé documentación para mantenimiento y uso por personal no técnico."
+          ]
+        }
+      ]
+    },
+    "skills": {
+      "heading": "Habilidades Técnicas",
+      "categories": [
+        {
+          "name": "Frontend",
+          "items": [
+            "HTML5",
+            "CSS3",
+            "JavaScript (ES6+)",
+            "React.js",
+            "Next.js (App Router)",
+            "TailwindCSS",
+            "shadcn/ui"
+          ]
+        },
+        {
+          "name": "Backend",
+          "items": [
+            "Node.js (Rutas API de Next.js)",
+            "Flask (Python)",
+            "PostgreSQL",
+            "SQLite"
+          ]
+        },
+        {
+          "name": "Herramientas y Librerías",
+          "items": [
+            "Prisma ORM",
+            "Git & GitHub",
+            "Chart.js",
+            "react-chartjs-2",
+            "Clerk",
+            "Snipe-IT",
+            "node-cron / Vercel Cron",
+            "papaparse",
+            "jsPDF + autotable"
+          ]
+        }
+      ]
+    }
+  },
+  "projects": {
+    "heading": "Proyectos",
+    "details": "Detalles",
+    "demo": "Demo",
+    "code": "Código",
+    "featuresHeading": "Características",
+    "techStackHeading": "Tecnologías"
+  }
+}
