@@ -5,10 +5,16 @@ import { motion } from "framer-motion";
 import { Github, Linkedin, Mail } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
+import { useEffect, useState } from "react";
 
 export default function HomePage() {
   const t = useTranslations("hero");
   const nav = useTranslations("nav");
+  const [origin, setOrigin] = useState<string>("");
+
+  useEffect(() => {
+    setOrigin(window.location.origin);
+  }, []);
 
   const socialLinks = [
     { Icon: Github, url: "https://github.com/h0kd", external: true },
@@ -37,7 +43,10 @@ export default function HomePage() {
       {/* Download CV */}
       <div className="flex justify-center space-x-4">
         <Button variant="outline" asChild>
-          <a href="/files/Leonardo_DelPino_CV.pdf" download>
+          <a
+            href={origin ? `${origin}/files/Leonardo_DelPino_CV.pdf` : "#"}
+            download
+          >
             {t("downloadCV")}
           </a>
         </Button>
