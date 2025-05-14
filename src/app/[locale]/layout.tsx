@@ -1,3 +1,4 @@
+// src/app/[locale]/layout.tsx
 import "../globals.css";
 import React, { ReactNode } from "react";
 import { notFound } from "next/navigation";
@@ -18,31 +19,35 @@ export function generateStaticParams() {
 }
 
 export default async function LocaleLayout({ children, params }: Props) {
-  // Await params before accessing its properties
+  // 1. Esperar y validar locale
   const { locale } = await params;
-
   if (!hasLocale(routing.locales, locale)) {
     return notFound();
   }
 
+  // 2. Cargar los mensajes JSON para este locale
+  let messages;
+  try {
+    messages = (await import(`../../messages/${locale}.json`)).default;
+  } catch {
+    return notFound();
+  }
+
+  // 3. Renderizar el proveedor de i18n y layout interno
   return (
-    <html lang={locale} suppressHydrationWarning>
-      <body className="min-h-screen bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100">
-        <NextIntlClientProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <Navbar />
-            <main className="container mx-auto px-4 py-8">
-              <PageTransition>{children}</PageTransition>
-            </main>
-            <Toaster position="top-center" richColors />
-          </ThemeProvider>
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <NextIntlClientProvider locale={locale} messages={messages}>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        disableTransitionOnChange
+      >
+        <Navbar />
+        <main className="container mx-auto px-4 py-8">
+          <PageTransition>{children}</PageTransition>
+        </main>
+        <Toaster position="top-center" richColors />
+      </ThemeProvider>
+    </NextIntlClientProvider>
   );
 }
