@@ -3,10 +3,17 @@ import "./globals.css";
 import { ReactNode } from "react";
 
 export const metadata = {
-  titleTemplate: "%s | Leonardo Del Pino",
-  defaultTitle: "Leonardo Del Pino • Full Stack Developer",
+  title: {
+    default: "Leonardo Del Pino • Full Stack Developer",
+    template: "%s | Leonardo Del Pino",
+  },
   description:
     "Professional portfolio of Leonardo Del Pino, Full Stack Developer.",
+  icons: {
+    icon: "/favicon.ico", // tu favicon en public/favicon.ico
+    shortcut: "/favicon-16x16.png", // opcional, si lo tienes
+    apple: "/apple-touch-icon.png", // opcional, si lo tienes
+  },
   openGraph: {
     title: "Leonardo Del Pino • Full Stack Developer",
     description:
