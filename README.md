@@ -1,6 +1,5 @@
 Here’s a starter **README.md** for your full-stack Next.js + Tailwind portfolio, including i18n, theming, and everything we’ve built:
 
-```markdown
 # Leonardo Del Pino • Portfolio
 
 My personal portfolio built with Next.js (App Router), Tailwind CSS, next-intl for i18n, and shadcn/ui.  
@@ -26,7 +25,6 @@ Supports English (`/en/...`) and Spanish (`/es/...`), dark/light mode, analytics
 ---
 
 ## 📁 Repository Structure
-```
 
 my-portfolio/
 ├── public/
@@ -57,16 +55,15 @@ my-portfolio/
 ├── middleware.ts
 └── package.json
 
-````
-
 ---
 
 ## 🛠 Setup & Development
 
 1. **Install dependencies**
+
    ```bash
    npm install
-````
+   ```
 
 2. **Run locally**
 
@@ -126,5 +123,7 @@ MIT © Leonardo Del Pino
 **Made with ❤️ & Next.js**
 
 ```
+
+
 
 ```
