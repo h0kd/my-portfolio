@@ -1,36 +1,130 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Here’s a starter **README.md** for your full-stack Next.js + Tailwind portfolio, including i18n, theming, and everything we’ve built:
 
-## Getting Started
+```markdown
+# Leonardo Del Pino • Portfolio
 
-First, run the development server:
+My personal portfolio built with Next.js (App Router), Tailwind CSS, next-intl for i18n, and shadcn/ui.  
+Supports English (`/en/...`) and Spanish (`/es/...`), dark/light mode, analytics, CV download, projects listing & detail pages, contact form, and more.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## 🚀 Features
+
+- **Next.js 15 (App Router)** with server & client components
+- **Tailwind CSS** + custom theme tokens via CSS variables
+- **Internationalization** with [next-intl] prefix routing (`/en`, `/es`)
+- **Dark / Light Mode** toggle (with system-preference fallback)
+- **Analytics** (Vercel Analytics or GA4)
+- **CV Download** button (served from `/public/files`)
+- **Projects** section:
+  - Grid of project cards
+  - Dynamic detail pages (`/[locale]/projects/[slug]`)
+- **Contact Form** with API route integration & toast feedback
+- **SEO**: metadata, OpenGraph, Twitter Card
+- **Performance**: image optimizations, Lighthouse scoring, lazy loading
+
+---
+
+## 📁 Repository Structure
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+my-portfolio/
+├── public/
+│ ├── files/Leonardo_DelPino_CV.pdf
+│ └── images/… # project thumbnails, profile, noise textures…
+├── messages/
+│ ├── en.json # all English translations
+│ └── es.json # all Spanish translations
+├── src/
+│ ├── app/
+│ │ ├── layout.tsx # root HTML wrapper, metadata & global CSS
+│ │ ├── page.tsx # fallback homepage redirect to /en or /es
+│ │ ├── \[locale]/
+│ │ │ ├── layout.tsx # i18n wrapper, NextIntlClientProvider
+│ │ │ ├── page.tsx # localized Hero
+│ │ │ ├── projects/
+│ │ │ │ ├── page.tsx # `/[locale]/projects`
+│ │ │ │ └── \[slug]/page.tsx # project detail
+│ │ │ ├── about/page.tsx
+│ │ │ └── contact/page.tsx
+│ ├── components/ # shared UI (Navbar, ProjectCard, Button, etc.)
+│ ├── i18n/ # next-intl routing & middleware
+│ └── utils/
+│ └── projects.ts # static project data
+├── tailwind.config.js
+├── next.config.ts
+├── next-intl.config.ts
+├── middleware.ts
+└── package.json
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+````
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🛠 Setup & Development
 
-To learn more about Next.js, take a look at the following resources:
+1. **Install dependencies**
+   ```bash
+   npm install
+````
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. **Run locally**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   ```bash
+   npm run dev
+   ```
 
-## Deploy on Vercel
+   - [http://localhost:3000](http://localhost:3000) → redirects to your default locale `en`
+   - [http://localhost:3000/es](http://localhost:3000/es) → Spanish version
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. **Build & Preview**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   ```bash
+   npm run build
+   npm run start
+   ```
+
+---
+
+## 📐 Tailwind & Styling
+
+- Global CSS in `src/app/globals.css` includes custom CSS variables, grain-noise utilities, animations, and shadcn/ui theming.
+- Dark mode is toggled via `useTheme` in `ThemeProvider` + `<ModeToggle />`.
+
+---
+
+## 🌐 Internationalization
+
+- Translations stored in `messages/en.json` and `messages/es.json`.
+- `next-intl` plugin in `next.config.ts` automatically wires up the i18n middleware and rewrites.
+- Dynamic segment `[locale]` under `src/app` scopes every route.
+
+---
+
+## 📦 Deployment
+
+- Deploy on **Vercel** for zero-config Next.js support.
+- Ensure `NEXT_PUBLIC_DEFAULT_LOCALE` is set (if you use env-based default locale).
+- Analytics automatically enabled if you add your Vercel Analytics ID or GA4 snippet in `_app` or `layout.tsx`.
+
+---
+
+## 🤝 Contributing
+
+This is my personal portfolio—pull requests are unlikely, but feel free to fork! If you spot typos, bugs or design tweaks, open an issue or PR.
+
+---
+
+### License
+
+```text
+MIT © Leonardo Del Pino
+```
+
+---
+
+**Made with ❤️ & Next.js**
+
+```
+
+```
