@@ -88,9 +88,3 @@ MIT © Leonardo Del Pino
 ---
 
 **Made with ❤️ & Next.js**
-
-```
-
-
-
-```
