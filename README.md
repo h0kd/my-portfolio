@@ -1,5 +1,3 @@
-Here’s a starter **README.md** for your full-stack Next.js + Tailwind portfolio, including i18n, theming, and everything we’ve built:
-
 # Leonardo Del Pino • Portfolio
 
 My personal portfolio built with Next.js (App Router), Tailwind CSS, next-intl for i18n, and shadcn/ui.  
