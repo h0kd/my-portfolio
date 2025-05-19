@@ -77,12 +77,12 @@ const projects: ProjectData[] = [
 
   {
     slug: "portfolio-website",
-    title: "Portfolio Website",
+    title: "Portfolio",
     description:
       "A sleek, dark-mode portfolio built with Next.js and TailwindCSS to showcase projects.",
     image: "/images/portfolio/preview.png",
     demoUrl: "https://your-portfolio.vercel.app",
-    repoUrl: "https://github.com/your-username/portfolio",
+    repoUrl: "https://github.com/h0kd/my-portfolio",
     techStack: ["Next.js 14", "TailwindCSS", "Framer Motion", "TypeScript"],
     features: [
       "Dynamic project pages fetched from MDX",

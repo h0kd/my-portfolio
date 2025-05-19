@@ -56,12 +56,12 @@ export const projectsEs: ProjectData[] = [
   },
   {
     slug: "portfolio-website",
-    title: "Sitio de Portafolio",
+    title: "Portafolio",
     description:
       "Portafolio elegante en modo oscuro construido con Next.js y TailwindCSS para mostrar proyectos.",
     image: "/images/portfolio/preview.png",
     demoUrl: "https://your-portfolio.vercel.app",
-    repoUrl: "https://github.com/your-username/portfolio",
+    repoUrl: "https://github.com/h0kd/my-portfolio",
     techStack: ["Next.js 14", "TailwindCSS", "Framer Motion", "TypeScript"],
     features: [
       "Páginas de proyectos dinámicas cargadas desde MDX",
