@@ -24,39 +24,6 @@ Supports English (`/en/...`) and Spanish (`/es/...`), dark/light mode, analytics
 
 ---
 
-## 📁 Repository Structure
-
-my-portfolio/
-├── public/
-│ ├── files/Leonardo_DelPino_CV.pdf
-│ └── images/… # project thumbnails, profile, noise textures…
-├── messages/
-│ ├── en.json # all English translations
-│ └── es.json # all Spanish translations
-├── src/
-│ ├── app/
-│ │ ├── layout.tsx # root HTML wrapper, metadata & global CSS
-│ │ ├── page.tsx # fallback homepage redirect to /en or /es
-│ │ ├── \[locale]/
-│ │ │ ├── layout.tsx # i18n wrapper, NextIntlClientProvider
-│ │ │ ├── page.tsx # localized Hero
-│ │ │ ├── projects/
-│ │ │ │ ├── page.tsx # `/[locale]/projects`
-│ │ │ │ └── \[slug]/page.tsx # project detail
-│ │ │ ├── about/page.tsx
-│ │ │ └── contact/page.tsx
-│ ├── components/ # shared UI (Navbar, ProjectCard, Button, etc.)
-│ ├── i18n/ # next-intl routing & middleware
-│ └── utils/
-│ └── projects.ts # static project data
-├── tailwind.config.js
-├── next.config.ts
-├── next-intl.config.ts
-├── middleware.ts
-└── package.json
-
----
-
 ## 🛠 Setup & Development
 
 1. **Install dependencies**
