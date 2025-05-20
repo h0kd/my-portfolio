@@ -4,8 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { Button } from "@/components/ui/button";
-
-// Tus datos de proyectos
 import projectsEn from "@/utils/projects";
 import { projectsEs } from "@/utils/project.es";
 
@@ -15,6 +13,7 @@ interface Params {
 }
 
 export function generateStaticParams() {
+  // generar rutas /en/projects/:slug y /es/projects/:slug
   const locales: Params["locale"][] = ["en", "es"];
   return locales.flatMap((locale) =>
     (locale === "es" ? projectsEs : projectsEn).map((p) => ({
@@ -25,30 +24,29 @@ export function generateStaticParams() {
 }
 
 export default async function ProjectDetailPage({
-  // Aquí indicamos que params viene como Promise
   params,
 }: {
-  params: Promise<Params>;
+  params: Params | Promise<Params>;
 }) {
-  // *** ¡Importante! ***
-  // Primero esperamos a que lleguen los params
+  // **Importante**: await antes de destructurar params
   const { locale, slug } = await params;
 
-  // Carga las traducciones de la sección "projects"
+  // carga textos
   const t = await getTranslations("projects");
 
-  // Elige la lista de datos según el locale
+  // escoge datos según locale
   const list = locale === "es" ? projectsEs : projectsEn;
-
   const project = list.find((p) => p.slug === slug);
   if (!project) return notFound();
 
   return (
     <article className="container mx-auto px-4 py-12 space-y-6">
+      {/* Título */}
       <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
         {project.title}
       </h1>
 
+      {/* Imagen */}
       <div className="relative w-full h-64 rounded-lg overflow-hidden">
         <Image
           src={project.image}
@@ -58,11 +56,13 @@ export default async function ProjectDetailPage({
         />
       </div>
 
+      {/* Descripción */}
       <p className="text-lg text-gray-700 dark:text-gray-300">
         {project.description}
       </p>
 
-      {project.features?.length ? (
+      {/* Características */}
+      {project.features && project.features.length > 0 && (
         <section>
           <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
             {t("featuresHeading")}
@@ -73,8 +73,9 @@ export default async function ProjectDetailPage({
             ))}
           </ul>
         </section>
-      ) : null}
+      )}
 
+      {/* Tech Stack */}
       <section>
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
           {t("techStackHeading")}
@@ -91,6 +92,7 @@ export default async function ProjectDetailPage({
         </div>
       </section>
 
+      {/* Botones */}
       <div className="flex gap-4 pt-6">
         <Button variant="outline" asChild>
           <Link href={project.demoUrl} target="_blank" rel="noopener">
