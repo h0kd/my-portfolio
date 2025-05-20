@@ -13,7 +13,6 @@ interface Params {
 }
 
 export function generateStaticParams() {
-  // generar rutas /en/projects/:slug y /es/projects/:slug
   const locales: Params["locale"][] = ["en", "es"];
   return locales.flatMap((locale) =>
     (locale === "es" ? projectsEs : projectsEn).map((p) => ({
@@ -24,29 +23,26 @@ export function generateStaticParams() {
 }
 
 export default async function ProjectDetailPage({
+  // Igual: params es Promise<Params>
   params,
 }: {
-  params: Params | Promise<Params>;
+  params: Promise<Params>;
 }) {
-  // **Importante**: await antes de destructurar params
+  // ¡Y await params antes de leer!
   const { locale, slug } = await params;
 
-  // carga textos
   const t = await getTranslations("projects");
 
-  // escoge datos según locale
   const list = locale === "es" ? projectsEs : projectsEn;
   const project = list.find((p) => p.slug === slug);
   if (!project) return notFound();
 
   return (
     <article className="container mx-auto px-4 py-12 space-y-6">
-      {/* Título */}
       <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
         {project.title}
       </h1>
 
-      {/* Imagen */}
       <div className="relative w-full h-64 rounded-lg overflow-hidden">
         <Image
           src={project.image}
@@ -56,12 +52,10 @@ export default async function ProjectDetailPage({
         />
       </div>
 
-      {/* Descripción */}
       <p className="text-lg text-gray-700 dark:text-gray-300">
         {project.description}
       </p>
 
-      {/* Características */}
       {project.features && project.features.length > 0 && (
         <section>
           <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
@@ -75,7 +69,6 @@ export default async function ProjectDetailPage({
         </section>
       )}
 
-      {/* Tech Stack */}
       <section>
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
           {t("techStackHeading")}
@@ -92,7 +85,6 @@ export default async function ProjectDetailPage({
         </div>
       </section>
 
-      {/* Botones */}
       <div className="flex gap-4 pt-6">
         <Button variant="outline" asChild>
           <Link href={project.demoUrl} target="_blank" rel="noopener">
