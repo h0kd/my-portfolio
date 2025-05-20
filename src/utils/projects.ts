@@ -1,4 +1,8 @@
 // src/utils/projects.ts
+import dashboardInicio from "@/images/expense-tracker/dashboardInicio.png";
+import climateAnalytics from "@/images/climate-analytics/overview.png";
+import portfolioPreview from "@/images/portfolio/preview.png";
+import { StaticImageData } from "next/image";
 
 export type ProjectData = {
   /** Unique identifier for routing */
@@ -8,7 +12,7 @@ export type ProjectData = {
   /** Brief description (1-2 sentences) */
   description: string;
   /** Path to the main project image */
-  image: string;
+  image: StaticImageData;
   /** Live demo URL */
   demoUrl: string;
   /** GitHub repository URL */
@@ -25,7 +29,7 @@ const projects: ProjectData[] = [
     title: "Expense Tracker",
     description:
       "Full-stack web app to log, visualize & export your expenses in a clean, responsive dashboard.",
-    image: "/images/expense-tracker/dashboardInicio.png",
+    image: dashboardInicio,
     demoUrl: "https://your-expense-tracker.vercel.app",
     repoUrl: "https://github.com/h0kd/expense-tracker-nextjs",
     techStack: [
@@ -52,7 +56,7 @@ const projects: ProjectData[] = [
     title: "Climate Analytics Dashboard",
     description:
       "Full-stack platform to fetch, store, and visualize real-time and historical weather data.",
-    image: "/images/climate-analytics/overview.png",
+    image: climateAnalytics,
     demoUrl: "https://climate-analytics.vercel.app/",
     repoUrl: "https://github.com/h0kd/climate-analytics",
     techStack: [
@@ -80,7 +84,7 @@ const projects: ProjectData[] = [
     title: "Portfolio",
     description:
       "A sleek, dark-mode portfolio built with Next.js and TailwindCSS to showcase projects.",
-    image: "/images/portfolio/preview.png",
+    image: portfolioPreview,
     demoUrl: "https://your-portfolio.vercel.app",
     repoUrl: "https://github.com/h0kd/my-portfolio",
     techStack: ["Next.js 14", "TailwindCSS", "Framer Motion", "TypeScript"],

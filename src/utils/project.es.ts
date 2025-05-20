@@ -1,4 +1,7 @@
 import { ProjectData } from "./projects";
+import dashboardInicio from "@/images/expense-tracker/dashboardInicio.png";
+import climateAnalytics from "@/images/climate-analytics/overview.png";
+import portfolioPreview from "@/images/portfolio/preview.png";
 
 export const projectsEs: ProjectData[] = [
   {
@@ -6,7 +9,7 @@ export const projectsEs: ProjectData[] = [
     title: "Registro de Gastos",
     description:
       "Aplicación web full-stack para registrar, visualizar y exportar tus gastos en un tablero limpio y responsivo.",
-    image: "/images/expense-tracker/dashboardInicio.png",
+    image: dashboardInicio,
     demoUrl: "https://your-expense-tracker.vercel.app",
     repoUrl: "https://github.com/h0kd/expense-tracker-nextjs",
     techStack: [
@@ -32,7 +35,7 @@ export const projectsEs: ProjectData[] = [
     title: "Panel de Clima",
     description:
       "Plataforma full-stack para obtener, almacenar y visualizar datos meteorológicos en tiempo real e históricos.",
-    image: "/images/climate-analytics/overview.png",
+    image: climateAnalytics,
     demoUrl: "https://climate-analytics.vercel.app/",
     repoUrl: "https://github.com/h0kd/climate-analytics",
     techStack: [
@@ -59,7 +62,7 @@ export const projectsEs: ProjectData[] = [
     title: "Portafolio",
     description:
       "Portafolio elegante en modo oscuro construido con Next.js y TailwindCSS para mostrar proyectos.",
-    image: "/images/portfolio/preview.png",
+    image: portfolioPreview,
     demoUrl: "https://your-portfolio.vercel.app",
     repoUrl: "https://github.com/h0kd/my-portfolio",
     techStack: ["Next.js 14", "TailwindCSS", "Framer Motion", "TypeScript"],

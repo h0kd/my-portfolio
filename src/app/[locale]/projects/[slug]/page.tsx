@@ -1,8 +1,8 @@
 // src/app/[locale]/projects/[slug]/page.tsx
 import { notFound } from "next/navigation";
+import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import Link from "next/link";
-import { getTranslations } from "next-intl/server";
 import { Button } from "@/components/ui/button";
 import projectsEn from "@/utils/projects";
 import { projectsEs } from "@/utils/project.es";
@@ -13,8 +13,7 @@ interface Params {
 }
 
 export function generateStaticParams() {
-  const locales: Params["locale"][] = ["en", "es"];
-  return locales.flatMap((locale) =>
+  return ["en", "es"].flatMap((locale) =>
     (locale === "es" ? projectsEs : projectsEn).map((p) => ({
       locale,
       slug: p.slug,
@@ -23,19 +22,23 @@ export function generateStaticParams() {
 }
 
 export default async function ProjectDetailPage({
-  // Igual: params es Promise<Params>
   params,
 }: {
   params: Promise<Params>;
 }) {
-  // ¡Y await params antes de leer!
+  // 1) await params
   const { locale, slug } = await params;
 
+  // 2) translations
   const t = await getTranslations("projects");
 
+  // 3) elige datos
   const list = locale === "es" ? projectsEs : projectsEn;
   const project = list.find((p) => p.slug === slug);
   if (!project) return notFound();
+
+  // 4) garantiza un array de features
+  const features = project.features ?? [];
 
   return (
     <article className="container mx-auto px-4 py-12 space-y-6">
@@ -43,7 +46,7 @@ export default async function ProjectDetailPage({
         {project.title}
       </h1>
 
-      <div className="relative w-full h-64 rounded-lg overflow-hidden">
+      <div className="relative w-full h-64 rounded-lg overflow-hidden bg-gray-100">
         <Image
           src={project.image}
           alt={project.title}
@@ -56,13 +59,13 @@ export default async function ProjectDetailPage({
         {project.description}
       </p>
 
-      {project.features && project.features.length > 0 && (
+      {features.length > 0 && (
         <section>
           <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
             {t("featuresHeading")}
           </h2>
           <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
-            {project.features.map((feat, i) => (
+            {features.map((feat, i) => (
               <li key={i}>{feat}</li>
             ))}
           </ul>
