@@ -63,6 +63,12 @@ Supports English (`/en/...`) and Spanish (`/es/...`), dark/light mode, analytics
 
 ---
 
+## 👨‍💻 About Me
+
+I'm Leonardo Del Pino, a Full Stack Developer from Chile. I specialize in building modern web applications using Next.js, Prisma, and PostgreSQL. I'm passionate about creating tools that solve real problems and continuously improving as a developer.
+
+---
+
 ## 📦 Deployment
 
 - Deploy on **Vercel** for zero-config Next.js support.
