@@ -1,56 +1,42 @@
-// src/app/[locale]/projects/[slug]/page.tsx
+// src/app/projects/[slug]/page.tsx
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { Button } from "@/components/ui/button";
 
-// Import estático de ambas listas
+// Import de datos
 import projectsEn from "@/utils/projects";
 import { projectsEs } from "@/utils/project.es";
 
 interface Params {
-  locale: string;
+  locale?: string; // opcional si no usas rutas i18n aquí
   slug: string;
 }
 
-type ProjectData = {
-  slug: string;
-  title: string;
-  description: string;
-  image: string;
-  demoUrl: string;
-  repoUrl: string;
-  techStack: string[];
-  features?: string[];
-};
-
 export function generateStaticParams() {
-  const locales: Params["locale"][] = ["en", "es"];
-  return locales.flatMap((locale) => {
-    const list = locale === "es" ? projectsEs : projectsEn;
-    return list.map((project) => ({
-      locale,
-      slug: project.slug,
-    }));
-  });
+  return [
+    ...projectsEn.map((p) => ({ slug: p.slug })),
+    ...projectsEs.map((p) => ({ slug: p.slug })),
+  ];
 }
 
 export default async function ProjectDetailPage({
   params,
 }: {
-  // Next.js App Router requiere que params venga como promesa aquí
   params: Promise<Params>;
 }) {
-  // Primero esperamos a params y luego destructuramos
-  const { locale, slug } = await params;
+  // 1) Espera los params
+  const { slug } = await params;
 
-  // Cargamos las traducciones
+  // 2) Carga traducciones de 'projects'
   const t = await getTranslations("projects");
 
-  // Elegimos la lista correcta
-  const list: ProjectData[] = locale === "es" ? projectsEs : projectsEn;
-  const project = list.find((p) => p.slug === slug);
+  // 3) Intenta encontrar en ambas listas
+  const project =
+    projectsEn.find((p) => p.slug === slug) ||
+    projectsEs.find((p) => p.slug === slug);
+
   if (!project) {
     return notFound();
   }
@@ -74,7 +60,7 @@ export default async function ProjectDetailPage({
         {project.description}
       </p>
 
-      {project.features && project.features.length > 0 && (
+      {project.features?.length ? (
         <section>
           <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
             {t("featuresHeading")}
@@ -85,7 +71,7 @@ export default async function ProjectDetailPage({
             ))}
           </ul>
         </section>
-      )}
+      ) : null}
 
       <section>
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
