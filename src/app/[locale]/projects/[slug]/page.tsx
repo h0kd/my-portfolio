@@ -5,7 +5,7 @@ import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { Button } from "@/components/ui/button";
 
-// Import estático de ambos archivos de proyectos
+// Import estático de ambas listas
 import projectsEn from "@/utils/projects";
 import { projectsEs } from "@/utils/project.es";
 
@@ -39,18 +39,21 @@ export function generateStaticParams() {
 export default async function ProjectDetailPage({
   params,
 }: {
-  params: Params | Promise<Params>;
+  // Next.js App Router requiere que params venga como promesa aquí
+  params: Promise<Params>;
 }) {
+  // Primero esperamos a params y luego destructuramos
   const { locale, slug } = await params;
 
-  // Textos de UI
+  // Cargamos las traducciones
   const t = await getTranslations("projects");
 
-  // Selecciona la lista según el locale
+  // Elegimos la lista correcta
   const list: ProjectData[] = locale === "es" ? projectsEs : projectsEn;
-
   const project = list.find((p) => p.slug === slug);
-  if (!project) return notFound();
+  if (!project) {
+    return notFound();
+  }
 
   return (
     <article className="container mx-auto px-4 py-12 space-y-6">
@@ -71,7 +74,7 @@ export default async function ProjectDetailPage({
         {project.description}
       </p>
 
-      {project.features?.length && (
+      {project.features && project.features.length > 0 && (
         <section>
           <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
             {t("featuresHeading")}
