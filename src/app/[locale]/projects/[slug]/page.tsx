@@ -1,45 +1,47 @@
-// src/app/projects/[slug]/page.tsx
+// src/app/[locale]/projects/[slug]/page.tsx
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { Button } from "@/components/ui/button";
 
-// Import de datos
+// Tus datos de proyectos
 import projectsEn from "@/utils/projects";
 import { projectsEs } from "@/utils/project.es";
 
 interface Params {
-  locale?: string; // opcional si no usas rutas i18n aquí
+  locale: string;
   slug: string;
 }
 
 export function generateStaticParams() {
-  return [
-    ...projectsEn.map((p) => ({ slug: p.slug })),
-    ...projectsEs.map((p) => ({ slug: p.slug })),
-  ];
+  const locales: Params["locale"][] = ["en", "es"];
+  return locales.flatMap((locale) =>
+    (locale === "es" ? projectsEs : projectsEn).map((p) => ({
+      locale,
+      slug: p.slug,
+    }))
+  );
 }
 
 export default async function ProjectDetailPage({
+  // Aquí indicamos que params viene como Promise
   params,
 }: {
   params: Promise<Params>;
 }) {
-  // 1) Espera los params
-  const { slug } = await params;
+  // *** ¡Importante! ***
+  // Primero esperamos a que lleguen los params
+  const { locale, slug } = await params;
 
-  // 2) Carga traducciones de 'projects'
+  // Carga las traducciones de la sección "projects"
   const t = await getTranslations("projects");
 
-  // 3) Intenta encontrar en ambas listas
-  const project =
-    projectsEn.find((p) => p.slug === slug) ||
-    projectsEs.find((p) => p.slug === slug);
+  // Elige la lista de datos según el locale
+  const list = locale === "es" ? projectsEs : projectsEn;
 
-  if (!project) {
-    return notFound();
-  }
+  const project = list.find((p) => p.slug === slug);
+  if (!project) return notFound();
 
   return (
     <article className="container mx-auto px-4 py-12 space-y-6">
