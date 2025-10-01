@@ -4,7 +4,7 @@ import React, { ReactNode } from "react";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { routing } from "../../i18n/routing";
-import Navbar from "./components/Navbar";
+import ClientNavbar from "./components/ClientNavbar";
 import PageTransition from "../components/PageTransition";
 import { ThemeProvider } from "../components/theme-provider";
 import { Toaster } from "sonner";
@@ -42,11 +42,13 @@ export default async function LocaleLayout({ children, params }: Props) {
         enableSystem
         disableTransitionOnChange
       >
-        <Navbar />
-        <main className="container mx-auto px-4 py-8">
-          <PageTransition>{children}</PageTransition>
-        </main>
-        <Toaster position="top-center" richColors />
+        <div className="min-h-screen bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+          <ClientNavbar />
+          <main className="container mx-auto px-4 py-8">
+            <PageTransition>{children}</PageTransition>
+          </main>
+          <Toaster position="top-center" richColors />
+        </div>
       </ThemeProvider>
     </NextIntlClientProvider>
   );
